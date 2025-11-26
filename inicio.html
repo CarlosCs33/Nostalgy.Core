@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nostalgy.Core</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div class="container-fluid banner vh-100">
+        <div class="container pt-4">
+            <div class="glass overflow-hidden">
+                <div class="blue-strip-bar">
+                    <div class="window-controls">
+                        <div class="win-btn">_</div>
+                        <div class="win-btn">□</div>
+                        <div class="win-btn close-x">X</div>
+                    </div>
+                </div>
+                <div class="glass-nav-body">
+                    <nav class="navbar navbar-expand-lg navbar-dark w-100 p-0">
+                        <div class="container-fluid p-0">
+                            <a href="#" class="brand-text navbar-brand">
+                                Nostalgy.Core
+                            </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <!--<ul class="navbar-nav ms-auto gap-3 text-start ps-2"> 
+                                    <li class="nav-item"><a class="nav-link-retro fw-bold" href="#inicio">Inicio</a></li>
+                                    <li class="nav-item"><a class="nav-link-retro fw-bold" href="#proyectos">Tienda</a></li>
+                                    <li class="nav-item"><a class="nav-link-retro fw-bold" href="#proyectos">Estilos</a></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link-retro" href="#contacto">
+                                            <img src="recursos/nosotros.png" alt="Conócenos" style="width: 70px; filter: drop-shadow(0 0 2px #00ffaa);">
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ms-lg-3 d-flex align-items-center">
+                                        <a href="#" class="position-relative cart-trigger" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">                                            
+                                            <img src="recursos/iconCar.png" alt="Carrito" class="custom-cart-icon">
+                                            <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-light d-none" style="font-family: 'Press Start 2P'; font-size: 0.5rem;">
+                                                0
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul-->
+                                <ul class="navbar-nav ms-auto gap-3 gap-lg-4 text-start ps-2 align-items-center"> 
+                                    <li class="nav-item"><a class="nav-link-retro fw-bold" href="#inicio">Inicio</a></li>
+                                    <li class="nav-item"><a class="nav-link-retro fw-bold" href="#proyectos">Tienda</a></li>
+                                    <li class="nav-item"><a class="nav-link-retro fw-bold" href="#proyectos">Estilos</a></li>
+                                    
+                                    <li class="nav-item">
+                                        <a href="#contacto" title="Conócenos" style="text-decoration: none;">
+                                            <img src="recursos/nosotros.png" alt="Conócenos" class="nav-icon-retro">
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item position-relative">
+                                        <a href="#" class="cart-trigger" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" style="text-decoration: none;">                                            
+                                            <img src="recursos/iconCar.png" alt="Carrito" class="nav-icon-retro">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+             </div>
+        </div>
+        <div class="container">
+            <div class="banner-box glass my-4 p-4 p-lg-5">
+                <div class="row align-items-center gy-3">
+                    <div class="col-12 col-lg-7 d-flex flex-column align-items-center">
+                        <div class="title-container position-relative">
+                            <div class="title-pill">
+                                NOSTALGY
+                            </div>
+                            <div class="core-text">
+                                .CORE
+                            </div>
+                            <img src="recursos/manoPixel.png" class="globe-icon position-absolute" alt="Globo Y2K">
+                        </div>
+                        <a href="#contenido" class="pixel-button p-3 mt-4 mt-lg-5">Comprar Ahora</a>
+                    </div>
+                    <div class="col-12 col-lg-5 d-flex justify-content-center">
+                        <div class="photo-container w-75 w-lg-100 d-flex justify-content-center">
+                            <div class="photo-circle-border">
+                                <img src="recursos/logoNC.png" class="img-fluid rounded-circle" alt="TV Icon">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="container pt-5 pb-5">
+            <div class="glass mx-3 p-4 p-lg-5"> 
+                <h2 class="display-4 text-center mb-5" style="font-family: 'Press Start 2P', monospace; color: white; text-shadow: 2px 2px #000;">
+                    Conoce Nuestros Estilos
+                </h2>
+                <div class="style-bubble-grid">
+                    <a href="#styleDisplay" class="style-bubble" data-style="weirdcore">
+                        <img src="recursos/estilos/weirdcore.jpg" alt="Weirdcore">
+                        <div class="bubble-shine"></div>
+                        <span>Y2K</span>
+                    </a>
+                    <a href="#styleDisplay" class="style-bubble" data-style="frutiger">
+                        <img src="recursos/estilos/frutiger.jpg" alt="Frutiger Aero">
+                        <div class="bubble-shine"></div>
+                        <span>Frutiger Aero</span>
+                    </a>
+                    <a href="#styleDisplay" class="style-bubble" data-style="cybercore">
+                        <img src="recursos/estilos/cybercore.jpg" alt="Cybercore">
+                        <div class="bubble-shine"></div>
+                        <span>Cybercore</span>
+                    </a>
+                    <a href="#styleDisplay" class="style-bubble" data-style="darkaero">
+                        <img src="recursos/estilos/darkaero.jpg" alt="Dark Aero">
+                        <div class="bubble-shine"></div>
+                        <span>Old Web</span>
+                    </a>
+                </div>
+                <div id="styleDisplay" class="text-center mt-4 text-white" style="display:none;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="shop-section position-relative">
+        <div class="shop-overlay"></div>
+        <div class="container position-relative py-5" style="z-index: 2;">
+            <h2 class="section-title text-center mb-5">
+                <span style="color: #00ffaa;">&gt;</span> NUESTROS PRODUCTOS <span class="blink">_</span>
+            </h2>
+            
+            <div id="productos" class="row g-4">
+                <div class="col-12 text-center text-white py-5">
+                    <p class="pixel-font" style="font-size: 0.8rem;">BUSCANDO EN LA BASE DE DATOS...</p>
+                    <div class="spinner-border text-success" role="status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contacto" class="container-fluid py-5 position-relative" style="z-index: 10;">
+        <div class="container">
+            <div class="ocean-wrapper" style="background: radial-gradient(circle at 70% 50%, #102838 0%, #050f16 60%, #000000 100%); border-radius: 30px; overflow: hidden; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.8); border: 1px solid #00ffaa;">
+                <div class="row h-100 m-0">
+                    <div class="col-12 col-md-5 d-flex align-items-center" style="z-index: 5; position: relative;">
+                        <div class="p-5 w-100">
+                            <h3 class="text-white mb-3" style="font-family: 'Press Start 2P', cursive; text-shadow: 0 0 10px #00ffaa;">
+                                CONTACTO
+                            </h3>
+                            <p class="text-white-50 mb-4" style="font-family: monospace;">
+                                &lt;system&gt; Inicia transmisión... &lt;/system&gt;
+                            </p>
+                            <form id="retroForm">
+                                <div class="mb-4">
+                                    <label class="text-white mb-2" style="font-family: 'Press Start 2P'; font-size: 0.6rem; color: #00ffaa !important;">&gt; NICKNAME</label>
+                                    <input type="text" class="form-control" style="background: rgba(255,255,255,0.1); border: none; border-bottom: 1px solid #00ffaa; color: white;" placeholder="Usuario...">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="text-white mb-2" style="font-family: 'Press Start 2P'; font-size: 0.6rem; color: #00ffaa !important;">&gt; EMAIL</label>
+                                    <input type="email" class="form-control" style="background: rgba(255,255,255,0.1); border: none; border-bottom: 1px solid #00ffaa; color: white;" placeholder="correo@red.com">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="text-white mb-2" style="font-family: 'Press Start 2P'; font-size: 0.6rem; color: #00ffaa !important;">&gt; MENSAJE</label>
+                                    <textarea class="form-control" rows="3" style="background: rgba(255,255,255,0.1); border: none; border-bottom: 1px solid #00ffaa; color: white;" placeholder="Escribe aquí..."></textarea>
+                                </div>
+                                <button type="submit" class="btn w-100" style="border: 1px solid #00ffaa; color: #00ffaa; font-family: 'Press Start 2P'; padding: 15px; background: transparent;">
+                                    [ ENVIAR ]
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-7 position-relative p-0">
+                        <div id="fishTank" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">ALMACENAMIENTO (CARRITO)</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+
+        <div class="offcanvas-body d-flex flex-column p-0">
+            <div id="carrito-contenido" class="flex-grow-1 p-3" style="overflow-y: auto;">
+                <ul id="lista-carrito" class="list-unstyled"></ul>
+            </div>
+
+            <div class="cyber-total-section mt-auto">
+                <div class="d-flex justify-content-between mb-3">
+                    <span style="font-family: 'Press Start 2P'; font-size: 0.7rem; color: #a6c1ff;">TOTAL:</span>
+                    <span class="cyber-price" style="font-size: 1.2rem;">$<span id="total">0.00</span></span>
+                </div>
+                
+                <button id="pagar" class="btn-terminal btn-pay">
+                    [ PROCESAR PAGO ]
+                </button>
+                
+                <button id="limpiar-carrito" class="btn-terminal btn-clear">
+                    VACIAR CONTENEDOR
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="imageViewerModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content" style="background: black; border: 2px solid #00ffaa;">
+                <div class="modal-header" style="border-bottom: 1px solid #00ffaa;">
+                    <h5 class="modal-title text-white pixel-font" style="font-size: 0.8rem;">IMAGE_VIEWER.exe</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0 text-center">
+                    <img id="img-visor-src" src="" style="max-width: 100%; max-height: 80vh;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, query, orderBy, enableIndexedDbPersistence } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        // --- CONFIGURACIÓN DE NOSTALGY.CORE ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyAxsX_LUZHCHz6hFcg3xFhr6sl1Ir8UHJk",
+            authDomain: "nostalgycore-7a492.firebaseapp.com",
+            projectId: "nostalgycore-7a492",
+            storageBucket: "nostalgycore-7a492.firebasestorage.app",
+            messagingSenderId: "180701270980",
+            appId: "1:180701270980:web:ed680a9dca504c971dca91",
+            measurementId: "G-DELN14XPSR"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Intentar activar persistencia offline (para que funcione sin internet si ya cargó una vez)
+        enableIndexedDbPersistence(db).catch((err) => {
+            console.log("Nota: Persistencia offline no disponible en esta sesión (normal en pestañas múltiples).");
+        });
+
+        // --- VARIABLES DOM ---
+        const productosDiv = document.getElementById("productos");
+        const carritoUl = document.getElementById("lista-carrito");
+        const totalSpan = document.getElementById("total");
+        const cartBadge = document.getElementById("cart-badge");
+        
+        // --- ESTADO DE LA APP ---
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        let productosData = [];
+
+        // ==========================================
+        // 1. RENDERIZADO DE PRODUCTOS (ESTILO CRISTAL / BLUE HOLO)
+        // ==========================================
+        function renderProductos(productos) {
+            productosDiv.innerHTML = '';
+            
+            if (productos.length === 0) {
+                productosDiv.innerHTML = `<div class="col-12 text-center text-white" style="font-family: 'Press Start 2P'; margin-top: 50px; text-shadow: 0 0 10px #4a76fd;">CARGANDO ESTRUCTURA...</div>`;
+                return;
+            }
+
+            productos.forEach(p => {
+                const div = document.createElement("div");
+                div.className = "col-12 col-md-6 col-lg-4 mb-5"; 
+                const img = p.imagenUrl || 'recursos/logoNC.png'; 
+                
+                // HTML DE LA TARJETA CYBERCORE (CRISTAL)
+                div.innerHTML = `
+                    <div class="cyber-card">
+                        
+                        <div class="cyber-img-box" onclick="verImagenGrande('${img}')">
+                            <img src="${img}" alt="${p.nombre}">
+                        </div>
+
+                        <div class="cyber-body">
+                            <h5 class="text-white mb-3" style="font-family: 'Press Start 2P'; font-size: 0.9rem; text-shadow: 0 0 8px var(--cyber-electric-blue); line-height: 1.4;">
+                                ${p.nombre}
+                            </h5>
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="cyber-tag">${p.estilo || 'DATA'}</span>
+                                <span class="small" style="color: var(--cyber-ice-blue); font-family: monospace;">&lt;${p.formato || 'FILE'}&gt;</span>
+                            </div>
+                            
+                            <p class="flex-grow-1" style="font-size: 0.85rem; line-height: 1.5; margin-bottom: 20px; color: #d0dfff;">
+                                ${p.descripcion}
+                            </p>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-3 pt-3" style="border-top: 1px solid rgba(74, 118, 253, 0.3);">
+                                <div class="cyber-price">$${Number(p.precio).toFixed(2)}</div>
+                                
+                                <div class="d-flex gap-2 align-items-center">
+                                    <input type="number" id="cant-${p.id}" value="1" min="1" 
+                                        class="form-control cyber-qty-input">
+                                    
+                                    <button class="btn-cyber-add" onclick="agregarAlCarrito('${p.id}')">
+                                        COMPRAR
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productosDiv.appendChild(div);
+            });
+        }
+        // ==========================================
+        // 2. RENDERIZADO DEL CARRITO (ESTILO TERMINAL)
+        // ==========================================
+        function renderCarrito() {
+            carritoUl.innerHTML = '';
+            let total = 0;
+
+            if (carrito.length === 0) {
+                carritoUl.innerHTML = '<div class="text-center py-4 text-muted" style="font-family: monospace;">> BUFFER VACÍO <span class="blink">_</span></div>';
+                totalSpan.innerText = '0.00';
+                return;
+            }
+
+            carrito.forEach((item, index) => {
+                const subtotal = item.precio * item.cantidad;
+                total += subtotal;
+                
+                // Item de lista estilo hacker
+                carritoUl.innerHTML += `
+                    <li class="cyber-list-item">
+                        <div class="d-flex align-items-center">
+                            <img src="${item.imagenUrl}" style="width:40px; height:40px; object-fit:cover; margin-right:10px; border: 1px solid var(--cyber-green);">
+                            <div>
+                                <div style="font-weight:bold; font-size:0.8rem; color: #fff;">${item.nombre}</div>
+                                <div style="font-size:0.7rem; color: #aaa; font-family: monospace;">QTY: ${item.cantidad} | $${item.precio}</div>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <div style="color: var(--cyber-green); font-family: monospace;">$${subtotal.toFixed(2)}</div>
+                            <button onclick="eliminarDelCarrito(${index})" style="background:none; border:none; color: var(--cyber-pink); font-size: 1.2rem; cursor:pointer; line-height: 1;">&times;</button>
+                        </div>
+                    </li>
+                `;
+            });
+            totalSpan.innerText = total.toFixed(2);
+        }
+
+        // ==========================================
+        // 3. LÓGICA DE NEGOCIO (SIN LÍMITE DE STOCK)
+        // ==========================================
+        
+        // Función Global para agregar
+        window.agregarAlCarrito = function(id) {
+            const p = productosData.find(item => item.id === id);
+            if (!p) return;
+
+            const input = document.getElementById(`cant-${id}`);
+            const cantidad = parseInt(input.value) || 1;
+
+            // NOTA: Como son productos digitales, NO verificamos límite de stock.
+            
+            const itemExistente = carrito.find(item => item.id === id);
+            if (itemExistente) {
+                itemExistente.cantidad += cantidad;
+            } else {
+                carrito.push({ ...p, cantidad: cantidad });
+            }
+
+            guardarCarrito();
+            
+            // Abrir el menú lateral (Offcanvas)
+            const bsOffcanvas = new bootstrap.Offcanvas(document.getElementById('cartOffcanvas'));
+            bsOffcanvas.show();
+        };
+
+        // Función Global para eliminar
+        window.eliminarDelCarrito = function(index) {
+            // Confirmación estilo consola
+            if(confirm("> SYSTEM_WARNING: ¿ELIMINAR ESTE ÍTEM DEL BUFFER?")) {
+                carrito.splice(index, 1);
+                guardarCarrito();
+            }
+        };
+
+        // Guardar en LocalStorage y actualizar vista
+        function guardarCarrito() {
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            renderCarrito();
+            actualizarBadge();
+        }
+
+        // Actualizar el número rojo del ícono
+        function actualizarBadge() {
+            const count = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+            cartBadge.innerText = count;
+            cartBadge.classList.toggle('d-none', count === 0);
+        }
+
+        // ==========================================
+        // 4. CONEXIÓN CON FIREBASE (TIEMPO REAL)
+        // ==========================================
+        const q = query(collection(db, 'productos'), orderBy('createdAt', 'desc'));
+        
+        onSnapshot(q, (snap) => {
+            productosData = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            
+            // Guardar caché para cuando no haya internet
+            localStorage.setItem('productosCache', JSON.stringify(productosData));
+            
+            renderProductos(productosData);
+        }, (err) => {
+            console.log("Modo Offline Activado o Error:", err);
+            // Si falla la conexión, intentamos cargar lo que haya guardado en el navegador
+            const cache = localStorage.getItem('productosCache');
+            if(cache) {
+                productosData = JSON.parse(cache);
+                renderProductos(productosData);
+            }
+        });
+
+        // ==========================================
+        // 5. FUNCIONES EXTRA (VISOR Y BOTONES)
+        // ==========================================
+
+        // Visor de Imágenes (Modal)
+        window.verImagenGrande = function(url) {
+            const modalElement = document.getElementById('imageViewerModal');
+            const imgElement = document.getElementById('img-visor-src');
+            if(modalElement && imgElement) {
+                imgElement.src = url;
+                const modal = new bootstrap.Modal(modalElement);
+                modal.show();
+            }
+        };
+
+        // Botón "Borrar Datos" del carrito
+        const btnLimpiar = document.getElementById('limpiar-carrito');
+        if(btnLimpiar) {
+            btnLimpiar.addEventListener('click', () => {
+                if(carrito.length > 0 && confirm("> SYSTEM: ¿PURGAR TODO EL SISTEMA?")) { 
+                    carrito = []; 
+                    guardarCarrito(); 
+                }
+            });
+        }
+
+        // Botón "Pagar"
+        const btnPagar = document.getElementById('pagar');
+        if(btnPagar) {
+            btnPagar.addEventListener('click', () => {
+                if(carrito.length === 0) return;
+                alert("> CONNECTING TO SERVER... \n> TRANSFERENCIA COMPLETADA. \n> GRACIAS POR ELEGIR NOSTALGY.CORE");
+                carrito = [];
+                guardarCarrito();
+                // Cerrar el carrito
+                const canvasEl = document.getElementById('cartOffcanvas');
+                const bsOffcanvas = bootstrap.Offcanvas.getInstance(canvasEl);
+                if(bsOffcanvas) bsOffcanvas.hide();
+            });
+        }
+
+        // --- INICIALIZACIÓN ---
+        renderCarrito();
+        actualizarBadge();
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.js" integrity="sha512-wrQIZRuIVRafoAsp5i2HIXa+3oF+lQqx4eOMAdw+vt7npivM7+D4OMIZPhlkdbV18VxZLkn2QaOii6cr8c1+dA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="scripts/script.js"></script>
+</body>
+</html>
