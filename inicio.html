@@ -306,7 +306,7 @@
             let total = 0;
 
             if (carrito.length === 0) {
-                carritoUl.innerHTML = '<div class="text-center py-4 text-muted" style="font-family: monospace;">> BUFFER VACÍO <span class="blink">_</span></div>';
+                carritoUl.innerHTML = '<div class="text-center py-4 text-muted" style="font-family: monospace;">> VACÍO <span class="blink">_</span></div>';
                 totalSpan.innerText = '0.00';
                 return;
             }
@@ -439,7 +439,7 @@
         if(btnPagar) {
             btnPagar.addEventListener('click', () => {
                 if(carrito.length === 0) return;
-                alert("> CONNECTING TO SERVER... \n> TRANSFERENCIA COMPLETADA. \n> GRACIAS POR ELEGIR NOSTALGY.CORE");
+                alert("> TRANSFERENCIA COMPLETADA. \n> GRACIAS POR ELEGIR NOSTALGY.CORE");
                 carrito = [];
                 guardarCarrito();
                 // Cerrar el carrito
@@ -461,6 +461,7 @@
 </body>
 
 </html>
+
 
 
 
