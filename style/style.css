@@ -1,0 +1,466 @@
+/* =========================================
+   1. CONFIGURACIÓN GENERAL
+   ========================================= */
+body {
+    cursor: url('../recursos/cursor-pixel.png'), auto;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    overflow-x: hidden;
+    font-family: 'Sora', sans-serif;
+}
+
+/* Enlaces y botones con manita pixel */
+a, button, .style-bubble, .cyber-img-box, .btn-cyber-add, .cart-trigger {
+    cursor: url('../recursos/mano-pixel.png'), pointer;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: #1a1a1a; 
+}
+::-webkit-scrollbar-thumb {
+    background: #00ffaa; 
+    border-radius: 6px;
+    border: 3px solid #1a1a1a; 
+}
+
+/* =========================================
+   2. BANNER Y NAVEGACIÓN (TU DISEÑO ORIGINAL)
+   ========================================= */
+.banner{
+    background-image: url('../recursos/fondo.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.banner::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(119, 112, 204, 0.592); 
+}
+
+/* Efecto Vidrio con borde RIDGE (Tu estilo original) */
+.glass{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 10px ridge rgba(255, 255, 255, 0.18); /* Tu borde original */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    position: relative;
+    z-index: 2;
+}
+
+.blue-strip-bar {
+    background: linear-gradient(to right, #000080, #1084d0);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    height: 28px; width: 100%;
+    display: flex; justify-content: flex-end; align-items: center;
+    padding-right: 8px;
+}
+
+.glass-nav-body { padding: 10px 25px; }
+
+.brand-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem; color: white;
+    text-shadow: 2px 2px 0px #000;
+    text-decoration: none; margin-right: auto;
+}
+
+/* Botones ventana */
+.window-controls { display: flex; gap: 4px; pointer-events: none; }
+
+.win-btn {
+    width: 18px; height: 18px;
+    background-color: #c0c0c0;
+    border: 1px solid #fff; border-right-color: #808080; border-bottom-color: #808080;
+    display: flex; justify-content: center; align-items: center;
+    font-family: sans-serif; font-size: 9px; font-weight: bold; color: black;
+}
+.win-btn.close-x { background-color: #ff3b3b; color: white; }
+
+/* Nav Links Retro */
+.nav-link-retro {
+    position: relative; color: #ffffff !important;
+    text-decoration: none; padding: 5px 10px;
+    transition: all 0.2s ease;
+}
+.nav-link-retro:hover {
+    color: #00ffaa !important;
+    text-shadow: 0 0 5px #00ffaa, 0 0 10px #00ffaa, 2px 2px 0px rgba(0,0,0,0.5);
+    transform: translateY(-2px);
+}
+.nav-link-retro::before, .nav-link-retro::after {
+    position: absolute; opacity: 0; color: #00ffaa; transition: all 0.2s ease;
+}
+.nav-link-retro::before { content: '['; left: -10px; transform: translateX(10px); }
+.nav-link-retro::after { content: ']'; right: -10px; transform: translateX(-10px); }
+
+.nav-link-retro:hover::before { opacity: 1; transform: translateX(0); left: -15px; }
+.nav-link-retro:hover::after { opacity: 1; transform: translateX(0); right: -15px; }
+
+/* Animaciones Nav */
+.navbar-nav .nav-item {
+    opacity: 0; animation: fadeInDown 0.5s ease-out forwards;
+}
+.navbar-nav .nav-item:nth-child(1) { animation-delay: 0.7s; }
+.navbar-nav .nav-item:nth-child(2) { animation-delay: 1.0s; }
+.navbar-nav .nav-item:nth-child(3) { animation-delay: 1.2s; }
+.navbar-nav .nav-item:nth-child(4) { animation-delay: 1.4s; }
+.navbar-nav .nav-item:nth-child(5) { animation-delay: 1.6s; }
+
+/* =========================================
+   3. CONTENIDO BANNER (LOGO Y TV)
+   ========================================= */
+.banner-box { overflow: hidden; }
+.title-container { animation: zoomIn 0.8s ease-out; }
+
+.title-pill {
+    background: linear-gradient(to right, #00ffaa, #00b894);
+    color: #1a1a1a;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2.5rem; padding: 15px 40px;
+    border-radius: 50px; margin-right: 30px;
+    box-shadow: 0 0 15px #00ffaa;
+}
+
+.core-text {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem; color: white;
+    text-shadow: 2px 2px #000;
+    position: absolute; bottom: -25px; right: 15%;
+}
+
+.pixel-button {
+    background: transparent;
+    border: 10px ridge rgba(255, 255, 255, 0.456);
+    border-radius: 50px; color: white;
+    font-family: 'Press Start 2P', monospace; font-size: 0.9rem;
+    text-decoration: none; text-shadow: 1px 1px 2px #000;
+    transition: all 0.3s ease; display: inline-block;
+    animation: zoomIn 0.8s ease-out 0.4s backwards;
+}
+.pixel-button:hover {
+    background: white; color: #333;
+    box-shadow: 0 0 20px white; transform: translateY(-3px);
+}
+
+.globe-icon {
+    width: 100px; height: 100px;
+    position: absolute; top: 60%; right: 0; transform: translateY(-50%);
+}
+
+.photo-container { animation: zoomIn 0.8s ease-out; }
+
+.photo-circle-border {
+    width: min(50vh, 400px); height: min(50vh, 400px);
+    background: transparent; border-radius: 50%;
+    border: 4px dashed #00ffaa;
+    box-shadow: 0 0 20px #00ffaa, inset 0 0 20px #00ffaa;
+    display: flex; justify-content: center; align-items: center;
+    animation: pulseGlow 2s infinite alternate;
+}
+.photo-circle-border img {
+    animation: floatTV 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px rgba(0, 255, 170, 0.6));
+}
+
+/* =========================================
+   4. SECCIÓN ESTILOS (BURBUJAS)
+   ========================================= */
+.main-content {
+    position: relative; z-index: 2;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    background-image: url('../recursos/fondo2.png');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    border-top-left-radius: 30px; border-top-right-radius: 30px;
+    margin-top: -30px; padding-top: 30px;
+}
+
+.style-bubble-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem; padding: 1rem;
+}
+
+.style-bubble {
+    position: relative; display: block;
+    aspect-ratio: 1 / 1; border-radius: 50%; overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-out;
+}
+.style-bubble img {
+    width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;
+}
+.bubble-shine {
+    position: absolute; top: 10%; left: 10%; width: 60px; height: 30px;
+    background: rgba(255, 255, 255, 0.4); border-radius: 50%;
+    filter: blur(10px); transform: rotate(-30deg);
+}
+.style-bubble span {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 100%; text-align: center;
+    color: white !important; font-family: 'Press Start 2P', monospace; font-size: 0.9rem;
+    text-shadow: 2px 2px 0px #000, 0 0 10px rgba(0, 0, 0, 0.8);
+    z-index: 10; pointer-events: none;
+    animation: textFloat 3s ease-in-out infinite;
+}
+.style-bubble:hover { transform: scale(1.1) translateY(-15px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); }
+.style-bubble:hover img { transform: scale(1.15); }
+
+/* =========================================
+   5. TIENDA CYBERCORE (AZUL/CRISTAL) - NUEVO ESTILO
+   ========================================= */
+
+/* Variables Cybercore Cristal */
+:root {
+    --cyber-ice-blue: #a6c1ff;
+    --cyber-electric-blue: #4a76fd;
+    --cyber-deep-blue: #0a1a3a;
+    --cyber-chrome: linear-gradient(135deg, #e0e0e0 0%, #ffffff 50%, #a0a0a0 100%);
+    --cyber-glass-bg: linear-gradient(145deg, rgba(10, 26, 58, 0.8), rgba(74, 118, 253, 0.1));
+}
+
+.shop-section {
+    position: relative; z-index: 2;
+    min-height: 800px;
+    background-image: url('../recursos/fondo2.png'); 
+    background-size: cover; background-position: center; background-attachment: fixed; 
+    padding: 80px 0;
+    display: flex; align-items: center;
+}
+
+.shop-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.section-title {
+    font-family: 'Press Start 2P', cursive;
+    color: white; text-shadow: 0 0 15px var(--cyber-electric-blue);
+    font-size: 1.8rem; position: relative; z-index: 2;
+}
+
+/* Tarjetas Estilo Cubo de Cristal */
+.cyber-card {
+    background: var(--cyber-glass-bg);
+    border: 2px solid var(--cyber-ice-blue);
+    box-shadow: 0 0 20px rgba(74, 118, 253, 0.2);
+    backdrop-filter: blur(8px);
+    border-radius: 12px; overflow: hidden;
+    transition: all 0.3s ease; height: 100%;
+    display: flex; flex-direction: column;
+}
+.cyber-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 30px var(--cyber-electric-blue);
+    border-color: white;
+}
+
+.cyber-img-box {
+    height: 220px; border-bottom: 1px solid var(--cyber-electric-blue);
+    overflow: hidden; position: relative;
+}
+.cyber-img-box img {
+    width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
+}
+.cyber-img-box:hover img { transform: scale(1.1); }
+
+.cyber-body {
+    padding: 20px; flex-grow: 1;
+    display: flex; flex-direction: column;
+    color: var(--cyber-ice-blue);
+    background: rgba(10, 26, 58, 0.4);
+}
+
+.cyber-tag {
+    background: rgba(74, 118, 253, 0.2);
+    border: 1px solid var(--cyber-ice-blue);
+    color: white; padding: 4px 10px; font-size: 0.7rem;
+    border-radius: 20px;
+}
+
+.cyber-price {
+    font-family: 'Press Start 2P'; color: white; font-size: 1rem;
+    text-shadow: 0 0 8px var(--cyber-electric-blue);
+}
+
+/* Botones y Inputs de la tienda */
+.btn-cyber-add {
+    background: var(--cyber-chrome);
+    color: #0a1a3a; border: none;
+    font-family: 'Press Start 2P'; font-size: 0.7rem;
+    padding: 10px 18px; border-radius: 20px;
+    transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+.btn-cyber-add:hover {
+    background: white; box-shadow: 0 0 15px var(--cyber-ice-blue);
+}
+
+.cyber-qty-input {
+    background: rgba(0,0,0,0.5) !important;
+    border: 1px solid var(--cyber-ice-blue) !important;
+    color: white !important; text-align: center;
+    border-radius: 8px !important; width: 50px;
+}
+
+/* =========================================
+   6. CARRITO (OFFCANVAS AZUL)
+   ========================================= */
+#cartOffcanvas {
+    background: linear-gradient(to left, rgba(10, 26, 58, 0.98), rgba(5, 10, 20, 0.99));
+    border-left: 2px solid var(--cyber-electric-blue);
+    box-shadow: -10px 0 40px rgba(74, 118, 253, 0.4);
+    color: var(--cyber-ice-blue);
+    z-index: 10500 !important;
+}
+.offcanvas-backdrop { z-index: 10400 !important; }
+
+#cartOffcanvas .offcanvas-header {
+    border-bottom: 1px solid var(--cyber-electric-blue);
+    background: rgba(74, 118, 253, 0.1);
+}
+.offcanvas-title {
+    font-family: 'Press Start 2P'; font-size: 0.8rem; color: white;
+}
+
+.cyber-list-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--cyber-ice-blue);
+    margin-bottom: 10px; padding: 10px; border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.cyber-total-section {
+    border-top: 1px solid var(--cyber-electric-blue);
+    background: rgba(0,0,0,0.5); padding: 20px;
+}
+
+.btn-terminal {
+    width: 100%; padding: 12px; margin-bottom: 10px;
+    font-family: 'Press Start 2P'; font-size: 0.6rem;
+    text-transform: uppercase; border-radius: 30px;
+    transition: 0.3s; border: none;
+}
+.btn-pay { background: var(--cyber-chrome); color: #0a1a3a; }
+.btn-pay:hover { background: white; box-shadow: 0 0 15px #fff; }
+.btn-clear { background: transparent; border: 1px solid var(--cyber-ice-blue); color: var(--cyber-ice-blue); }
+.btn-clear:hover { background: rgba(255,0,0,0.2); border-color: red; color: white; }
+
+/* Icono del carrito */
+.custom-cart-icon {
+    width: 60px; height: 60px; object-fit: contain;
+    filter: drop-shadow(0 0 5px #ffffffb6); transition: transform 0.2s;
+}
+.custom-cart-icon:hover { transform: scale(1.1) rotate(-5deg); }
+.cart-trigger { text-decoration: none; cursor: pointer; }
+
+/* =========================================
+   7. CONTACTO Y FORMULARIO (CORREGIDO)
+   ========================================= */
+#contacto {
+    background-color: #020c12; width: 100%;
+    padding-top: 80px; padding-bottom: 80px;
+}
+
+.ocean-wrapper {
+    background: radial-gradient(circle at 70% 50%, #102838 0%, #050f16 60%, #000000 100%);
+    border-radius: 30px; overflow: hidden; position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8); border: 1px solid #00ffaa;
+    min-height: 600px; 
+}
+
+#fishTank {
+    width: 100%; height: 100%; min-height: 500px;
+    display: block; position: relative;
+}
+
+/* Inputs y Placeholder corrección */
+.form-control {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: none !important;
+    border-bottom: 1px solid #00ffaa !important;
+    color: white !important;
+    border-radius: 0 !important;
+}
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 0 10px rgba(0, 255, 170, 0.2);
+}
+
+/* CORRECCIÓN DEL TEXTO INVISIBLE (PLACEHOLDER) */
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+    opacity: 1;
+}
+
+/* =========================================
+   8. ANIMACIONES
+   ========================================= */
+@keyframes zoomIn { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes textFloat { 0% { transform: translate(-50%, -50%); } 50% { transform: translate(-50%, -65%); } 100% { transform: translate(-50%, -50%); } }
+@keyframes pulseGlow { 0% { box-shadow: 0 0 20px #00ffaa, inset 0 0 20px #00ffaa; border-color: #00ffaa; } 100% { box-shadow: 0 0 40px #00ffaa, inset 0 0 40px #00ffaa; border-color: #bdffe8; } }
+@keyframes floatTV { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+@keyframes blinker { 50% { opacity: 0; } }
+
+/* =========================================
+   9. RESPONSIVE MÓVIL (TUS AJUSTES ORIGINALES)
+   ========================================= */
+@media (max-width: 768px) {
+    .title-pill { font-size: 1.5rem; padding: 10px 20px; margin-right: 15px; }
+    .core-text { font-size: 1.2rem; bottom: -15px; }
+    .globe-icon { width: 60px; height: 60px; }
+    .pixel-button { font-size: 0.7rem; padding: 10px 20px; }
+    .photo-circle-border { width: 250px; height: 250px; }
+    .ocean-wrapper .col-md-7 { min-height: 300px !important; height: 300px !important; display: block !important; margin-top: 20px; }
+    #fishTank { width: 100% !important; height: 100% !important; min-height: 100% !important; display: block !important; }
+    .ocean-wrapper { height: auto !important; padding-bottom: 20px; }
+}
+
+@media (max-width: 576px) {
+    .title-pill { font-size: 1.2rem; }
+    .core-text { font-size: 1rem; bottom: -12px; }
+    .photo-circle-border { width: 200px; height: 200px; }
+}
+
+/*Nuevo css despues acomodar*/
+
+/* --- ALINEACIÓN Y ESTILO DE ÍCONOS DEL MENÚ --- */
+
+/* Clase compartida para AMBOS íconos (Usuarios y Carrito) */
+.nav-icon-retro {
+    height: 30px; /* Altura fija para que sean iguales */
+    width: auto;  /* El ancho se ajusta solo */
+    object-fit: contain;
+    transition: all 0.2s ease;
+    
+    /* Filtro base (opcional, si quieres que brillen un poquito siempre) */
+    filter: drop-shadow(0 0 2px rgba(0, 255, 170, 0.3));
+    cursor: pointer;
+}
+
+/* Animación al pasar el mouse (Hover) */
+.nav-icon-retro:hover {
+    transform: translateY(-3px) scale(1.1); /* Sube y crece un poco */
+    filter: drop-shadow(0 0 8px #00ffaa);   /* Brillo verde neón intenso */
+}
+
+/* Ajuste extra para móviles (para que no se vean gigantes en el menú desplegable) */
+@media (max-width: 991px) {
+    .nav-icon-retro {
+        height: 35px; /* Un poco más chicos en celular */
+        margin-top: 10px; /* Separación */
+    }
+}
