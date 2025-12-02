@@ -162,3 +162,137 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('bubbles-container');
+    
+    // Crear burbujas cada cierto tiempo
+    setInterval(() => {
+        if(!container) return;
+        
+        const b = document.createElement('div');
+        b.className = 'bubble';
+        
+        // TAMAÑOS GRANDES: Aleatorio entre 20px y 60px
+        const size = Math.random() * 40 + 20; 
+        
+        b.style.width = `${size}px`;
+        b.style.height = `${size}px`;
+        b.style.left = `${Math.random() * 100}%`;
+        
+        // Variables CSS para la animación única
+        b.style.setProperty('--duration', `${Math.random() * 5 + 6}s`); // Lentas (6 a 11 seg)
+        b.style.setProperty('--delay', '0s');
+        b.style.setProperty('--sway', `${Math.random() * 100 - 50}px`); // Bamboleo lateral
+        
+        container.appendChild(b);
+        
+        // Limpieza
+        setTimeout(() => b.remove(), 12000);
+    }, 800); // Una burbuja nueva cada casi segundo (menos frecuentes para no saturar)
+
+    const btnUp = document.getElementById("btn-back-to-top");
+    window.addEventListener('scroll', () => {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            if(btnUp) btnUp.style.display = "flex"; // CAMBIO IMPORTANTE: flex, no block
+        } else {
+            if(btnUp) btnUp.style.display = "none";
+        }
+    });
+
+    /* =========================================
+       OCULTAR BOTONES FLOTANTES AL ABRIR CARRITO
+       ========================================= */
+    const cartOffcanvas = document.getElementById('cartOffcanvas');
+    
+    // Seleccionamos AMBOS: el grupo de abajo y el botón de arriba
+    const floatingElements = [
+        document.querySelector('.fab-wrapper'), 
+        document.getElementById('fab-cart-top')
+    ];
+
+    if (cartOffcanvas) {
+        // 1. Cuando el carrito EMPIEZA a abrirse -> Ocultar botones
+        cartOffcanvas.addEventListener('show.bs.offcanvas', () => {
+            floatingElements.forEach(el => {
+                if(el) el.classList.add('fab-hidden');
+            });
+        });
+
+        // 2. Cuando el carrito TERMINA de cerrarse -> Mostrar botones
+        cartOffcanvas.addEventListener('hidden.bs.offcanvas', () => {
+            floatingElements.forEach(el => {
+                if(el) el.classList.remove('fab-hidden');
+            });
+        });
+    }
+});
+/* =========================================
+   EFECTO BURBUJAS VR (MOVIMIENTO + CLICK)
+   ========================================= */
+document.addEventListener('DOMContentLoaded', () => {
+    const vrZone = document.getElementById('vr-zone');
+
+    if (!vrZone) return;
+
+    let lastX = 0;
+    let lastY = 0;
+
+    // --- 1. LÓGICA DE MOVIMIENTO (ARRASTRE) ---
+    function handleMove(clientX, clientY) {
+        // Calculamos distancia para no saturar
+        const dist = Math.hypot(clientX - lastX, clientY - lastY);
+        
+        // Cada 40px de movimiento soltamos una burbuja
+        if (dist > 40) { 
+            crearBurbujaVR(clientX, clientY);
+            lastX = clientX;
+            lastY = clientY;
+        }
+    }
+
+    // Evento Mouse (PC)
+    vrZone.addEventListener('mousemove', (e) => {
+        handleMove(e.clientX, e.clientY);
+    });
+
+    // Evento Touch (Celular - Arrastrar)
+    vrZone.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        handleMove(touch.clientX, touch.clientY);
+    }, { passive: true });
+
+    // --- 2. LÓGICA DE CLICK / TAP (NUEVO) ---
+    // Esto hace que salga una burbuja al instante de hacer clic o tocar
+    vrZone.addEventListener('click', (e) => {
+        crearBurbujaVR(e.clientX, e.clientY);
+        
+        // Opcional: Generar una segunda burbuja pequeña para efecto "splash"
+        setTimeout(() => {
+             crearBurbujaVR(e.clientX + 10, e.clientY - 10);
+        }, 100);
+    });
+
+    // --- 3. FUNCIÓN DE CREACIÓN ---
+    function crearBurbujaVR(x, y) {
+        const b = document.createElement('div');
+        b.className = 'vr-cursor-bubble';
+        
+        // Tamaño variable (Grandes)
+        const size = Math.random() * 40 + 60; 
+        
+        b.style.width = `${size}px`;
+        b.style.height = `${size}px`;
+        b.style.left = `${x}px`;
+        b.style.top = `${y}px`;
+        
+        // Movimiento lateral aleatorio
+        const randomX = (Math.random() - 0.5) * 80;
+        b.style.setProperty('--x-move', `${randomX}px`);
+
+        document.body.appendChild(b);
+
+        // Limpieza suave
+        setTimeout(() => b.remove(), 4000);
+    }
+});
