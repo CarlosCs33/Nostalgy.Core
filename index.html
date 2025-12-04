@@ -173,6 +173,93 @@
             h1 { font-size: 1.8rem; }
             .menu-btn { width: 90%; }
         }
+
+        /* Animación de Apagado */
+        .crt-off {
+            animation: turnOffCRT 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards !important;
+        }
+        /* --- ESTILOS DEL LOGIN HACKER --- */
+        #login-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); /* Fondo oscuro semitransparente */
+            display: flex; justify-content: center; align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+
+        .login-box {
+            background: #000;
+            border: 2px solid #00ffaa;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 255, 170, 0.4);
+            animation: zoomIn 0.3s ease-out;
+        }
+
+        .login-box input {
+            background: #001100;
+            border: 1px solid #00ffaa;
+            color: #00ffaa;
+            font-family: 'Press Start 2P';
+            font-size: 0.8rem;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+            text-align: center;
+            outline: none;
+        }
+
+        .login-actions {
+            display: flex; justify-content: space-between; gap: 10px;
+        }
+
+        .btn-retro-small {
+            background: transparent;
+            border: 1px solid #555;
+            color: #888;
+            font-family: 'Press Start 2P';
+            font-size: 0.6rem;
+            padding: 10px;
+            cursor: pointer;
+            flex-grow: 1;
+        }
+
+        .btn-retro-small:hover { background: #333; color: white; }
+
+        .btn-retro-small.action {
+            border-color: #00ffaa;
+            color: #00ffaa;
+        }
+
+        .btn-retro-small.action:hover {
+            background: #00ffaa;
+            color: black;
+            box-shadow: 0 0 10px #00ffaa;
+        }
+
+        /* Utilidad para ocultar */
+        .d-none { display: none !important; }
+
+        @keyframes zoomIn { from { transform: scale(0); } to { transform: scale(1); } }
+        @keyframes turnOffCRT {
+            0% {
+                opacity: 1;
+                transform: scale(1, 1);
+                filter: brightness(1);
+            }
+            40% {
+                opacity: 1;
+                transform: scale(1, 0.002); /* Se aplasta verticalmente */
+                filter: brightness(10);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0, 0.002); /* Se cierra horizontalmente */
+                filter: brightness(0);
+            }
+        }
     </style>
 </head>
 <body>
@@ -197,8 +284,94 @@
                 <i class="bi bi-database-lock"></i> Modo Admin
             </a>
         </div>
+        <div id="login-overlay" class="d-none">
+            <div class="login-box">
+                <p class="blink">> ENTER_PASSWORD:</p>
+                <input type="password" id="admin-pass-input" placeholder="******" maxlength="10">
+                <div class="login-actions">
+                    <button id="btn-cancel-login" class="btn-retro-small">CANCEL</button>
+                    <button id="btn-confirm-login" class="btn-retro-small action">ACCESS</button>
+                </div>
+                <p id="login-error" class="text-danger mt-2 d-none" style="font-size: 0.6rem;">> ACCESS_DENIED</p>
+            </div>
+        </div>
     </div>
     <script src="scripts/pwa.js"></script>
-</body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const screen = document.querySelector('.crt-screen');
+            
+            // Elementos del Login
+            const modal = document.getElementById('login-overlay');
+            const inputPass = document.getElementById('admin-pass-input');
+            const errorMsg = document.getElementById('login-error');
+            const btnCancel = document.getElementById('btn-cancel-login');
+            const btnConfirm = document.getElementById('btn-confirm-login');
+            
+            // La contraseña (CÁMBIALA AQUÍ)
+            const PASSWORD_SECRETA = "1234"; 
 
+            // Función para ejecutar la transición de salida (Apagar TV)
+            function ejecutarTransicion(urlDestino) {
+                document.body.style.overflow = 'hidden';
+                document.body.style.backgroundColor = '#000';
+                screen.classList.add('crt-off');
+                setTimeout(() => { window.location.href = urlDestino; }, 600);
+            }
+
+            // 1. Manejo del botón CLIENTE (Directo)
+            const btnCliente = document.querySelector('.menu-btn[href="inicio.html"]');
+            if(btnCliente) {
+                btnCliente.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    ejecutarTransicion(btnCliente.href);
+                });
+            }
+
+            // 2. Manejo del botón ADMIN (Con Login)
+            const btnAdmin = document.querySelector('.menu-btn.admin');
+            if(btnAdmin) {
+                btnAdmin.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Mostrar el modal
+                    modal.classList.remove('d-none');
+                    inputPass.value = ''; // Limpiar input
+                    inputPass.focus();
+                    errorMsg.classList.add('d-none');
+                });
+            }
+
+            // 3. Lógica dentro del Modal
+            
+            // Confirmar contraseña
+            function checkPassword() {
+                if(inputPass.value === PASSWORD_SECRETA) {
+                    // ¡Correcto!
+                    modal.classList.add('d-none'); // Ocultar modal
+                    ejecutarTransicion('admin.html'); // Ir a admin con efecto
+                } else {
+                    // Incorrecto
+                    errorMsg.classList.remove('d-none');
+                    inputPass.value = '';
+                    // Efecto de temblor (visual feedback)
+                    inputPass.style.borderColor = 'red';
+                    setTimeout(() => inputPass.style.borderColor = '#00ffaa', 500);
+                }
+            }
+
+            btnConfirm.addEventListener('click', checkPassword);
+            
+            // Permitir dar Enter en el input
+            inputPass.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') checkPassword();
+            });
+
+            // Cancelar / Cerrar modal
+            btnCancel.addEventListener('click', () => {
+                modal.classList.add('d-none');
+                errorMsg.classList.add('d-none');
+            });
+        });
+    </script>
+</body>
 </html>
